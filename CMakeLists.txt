@@ -719,12 +719,14 @@ if (GSL_INSTALL OR NOT DEFINED GSL_INSTALL)
         DESTINATION "${config_install_dir}"
     )
     # }
-    if (MSVC)
-      install(FILES ${PROJECT_BINARY_DIR}/Debug/gsl.pdb
-                    ${PROJECT_BINARY_DIR}/Debug/gslcblas.pdb
-            DESTINATION lib
-            CONFIGURATIONS Debug)
-    endif ()
+    if(FALSE) # FIXME: https://ci.appveyor.com/project/ingenue/hunter/build/1.0.993
+      if (MSVC)
+        install(FILES ${PROJECT_BINARY_DIR}/Debug/gsl.pdb
+                      ${PROJECT_BINARY_DIR}/Debug/gslcblas.pdb
+              DESTINATION lib
+              CONFIGURATIONS Debug)
+      endif ()
+    endif()
   endif ()
   install(FILES ${GSL_HEADER_PATHS} DESTINATION include/gsl)
   set(PC_FILE ${CMAKE_BINARY_DIR}/gsl.pc)
